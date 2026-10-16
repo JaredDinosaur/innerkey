@@ -7,8 +7,11 @@ while getopts "v" flag; do
     fi
 done
 
-echo "Machine ID: $(cat /sys/class/dmi/id/product_name)"
-echo "Machine Name: $(cat /sys/class/dmi/id/product_version)"
+if [[ $verbose == 1 ]]; then
+    echo "Machine ID: $(cat /sys/class/dmi/id/product_name)"
+    echo "Machine Name: $(cat /sys/class/dmi/id/product_version)"
+fi
+
 echo "Looking for Windows product key..."
 
 sudo strings /sys/firmware/acpi/tables/MSDM &>/dev/null
